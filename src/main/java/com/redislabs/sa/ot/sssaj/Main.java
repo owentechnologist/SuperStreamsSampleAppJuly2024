@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * This program showcases the use of the Jedis Streams client library
  * redis-12144.c309.us-east-2-1.ec2.cloud.redislabs.com:
- * Example:  mvn compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args="--host redis-12144.c309.us-east-2-1.ec2.cloud.redislabs.com --port 12144 --password WqedzS2orEF4Dh0baBeaRqo16DrYYxzI"
+ * Example:  mvn compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args="--host redis-FIXME.c309.us-east-2-1.ec2.cloud.redislabs.com --port 12144 --password FIXME"
  *
  */
 public class Main {
@@ -311,16 +311,17 @@ class JedisConnectionHelper {
     }
 }
 
+
 class JedisConnectionHelperSettings {
     private String redisHost = "FIXME";
     private int redisPort = 6379;
     private String userName = "default";
     private String password = "";
-    private int maxConnections = 1;
-    private int connectionTimeoutMillis = 2000;
-    private int requestTimeoutMillis = 2000;
-    private int poolMaxIdle = 500;
-    private int poolMinIdle = 50;
+    private int maxConnections = 10; // these are best shared
+    private int connectionTimeoutMillis = 1000;
+    private int requestTimeoutMillis = 200;
+    private int poolMaxIdle = 5;
+    private int poolMinIdle = 0;
     private int numberOfMinutesForWaitDuration = 1;
     private boolean testOnCreate = true;
     private boolean testOnBorrow = true;
@@ -375,6 +376,10 @@ class JedisConnectionHelperSettings {
     }
 
     public void setMaxConnections(int maxConnections) {
+        this.maxConnections = maxConnections;
+    }
+
+    public void setMaxConnectionsWithDerivedMaxMinIdleSideEffects(int maxConnections) {
         this.maxConnections = maxConnections;
         this.setPoolMaxIdle(Math.round(maxConnections/2));
         this.setPoolMinIdle(Math.round(maxConnections/10));
