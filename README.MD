@@ -11,7 +11,8 @@ In order to run this example, you will need to:
 mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=redis-streams-java-0.3.1.2.jar
 ```
 
-* Have a modern instance of Redis running that includes the Redis Search module (I suggest version 7.4 and above)
+* Have a modern instance of Redis running that includes the Redis Search module (I suggest version 7.4 and above) https://redis.io/try-free/ 
+
 
 * Execute the mvn command with necessary args to connect to your Redis instance
 
