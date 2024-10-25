@@ -157,7 +157,7 @@ public class Main {
         }
         settings.setTestOnBorrow(true);
         settings.setConnectionTimeoutMillis(120000);
-        settings.setNumberOfMinutesForWaitDuration(1);
+        settings.setNumberOfMillisecondsForWaitDuration(100);
         settings.setNumTestsPerEvictionRun(10);
         settings.setPoolMaxIdle(1); //this means less stale connections
         settings.setPoolMinIdle(0);
@@ -298,7 +298,7 @@ class JedisConnectionHelper {
         poolConfig.setMaxIdle(bs.getPoolMaxIdle());
         poolConfig.setMaxTotal(bs.getMaxConnections());
         poolConfig.setMinIdle(bs.getPoolMinIdle());
-        poolConfig.setMaxWait(Duration.ofMinutes(bs.getNumberOfMinutesForWaitDuration()));
+        poolConfig.setMaxWait(Duration.ofMillis(bs.getNumberOfMillisecondsForWaitDuration()));
         poolConfig.setTestOnCreate(bs.isTestOnCreate());
         poolConfig.setTestOnBorrow(bs.isTestOnBorrow());
         poolConfig.setNumTestsPerEvictionRun(bs.getNumTestsPerEvictionRun());
@@ -322,7 +322,7 @@ class JedisConnectionHelperSettings {
     private int requestTimeoutMillis = 200;
     private int poolMaxIdle = 5;
     private int poolMinIdle = 0;
-    private int numberOfMinutesForWaitDuration = 1;
+    private int numberOfMillisecondsForWaitDuration = 100;
     private boolean testOnCreate = true;
     private boolean testOnBorrow = true;
     private boolean testOnReturn = true;
@@ -417,12 +417,12 @@ class JedisConnectionHelperSettings {
         this.poolMinIdle = poolMinIdle;
     }
 
-    public int getNumberOfMinutesForWaitDuration() {
-        return numberOfMinutesForWaitDuration;
+    public int getNumberOfMillisecondsForWaitDuration() {
+        return numberOfMillisecondsForWaitDuration;
     }
 
-    public void setNumberOfMinutesForWaitDuration(int numberOfMinutesForWaitDuration) {
-        this.numberOfMinutesForWaitDuration = numberOfMinutesForWaitDuration;
+    public void setNumberOfMillisecondsForWaitDuration(int numberOfMillisecondsForWaitDuration) {
+        this.numberOfMillisecondsForWaitDuration = numberOfMillisecondsForWaitDuration;
     }
 
     public boolean isTestOnCreate() {

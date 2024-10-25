@@ -55,6 +55,11 @@
             <version>1.7.1</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.redis</groupId>
+            <artifactId>redis-streams-java</artifactId>
+            <version>0.3.5</version>
+        </dependency>
     </dependencies>
 
     <properties>
