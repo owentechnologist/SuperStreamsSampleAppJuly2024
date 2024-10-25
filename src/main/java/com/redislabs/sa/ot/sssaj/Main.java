@@ -39,6 +39,8 @@ import java.util.Map;
 public class Main {
 
     /**
+     * FIXME: Thought for enhancement: If a song is called - "feelings"
+     * do not process - put it in PEL
      * To write a different song into the stream add:
      * --songtitle "Your song here"
      * To Acknowledge the consumption of a message by a consumer add:
